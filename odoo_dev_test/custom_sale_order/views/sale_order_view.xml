@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_sale_order_form_library" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.library</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="total_products_count"/>
+                    <field name="categories_count"/>
+                    <field name="most_expensive_line_id"/>
+                    <field name="discount_percentage"/>
+                    <field name="order_priority"
+                           decoration-success="order_priority == 'normal'"
+                           decoration-warning="order_priority == 'high'"
+                           decoration-danger="order_priority == 'urgent'"/>
+                    <field name="delivery_notes"/>
+                </xpath>
+                <header position="inside">
+                    <button
+                            name="action_open_category_report"
+                            type="object"
+                            string="Category Report"
+                            class="btn-primary"
+                    />
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>
